@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
             Application.Run(new Form1());
             //Add an item to test
             Item i = new Item { ItemName = "shirt", Cost = 19f };
-            DBConnect.SavePeople(i);
+            DBConnect.SaveItem(i);
 
             
         }
