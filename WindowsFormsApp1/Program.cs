@@ -8,6 +8,8 @@ namespace WindowsFormsApp1
 {
     internal static class Program
     {
+        public static Form2 mainDisplay;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,10 +18,11 @@ namespace WindowsFormsApp1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            mainDisplay = new Form2();
+            Application.Run(mainDisplay);
             //Add an item to test
-            Item i = new Item { ItemName = "shirt", Cost = 19f };
-            DBConnect.SavePeople(i);
+            //Item i = new Item { ItemName = "shirt", Cost = 19f };
+            //DBConnect.SavePeople(i);
 
             
         }
