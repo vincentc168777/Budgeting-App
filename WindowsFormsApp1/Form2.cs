@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
-        private string connectionString = "Data Source=testdb.db;";
+        
         public Form2()
         {
             InitializeComponent();
@@ -24,22 +24,7 @@ namespace WindowsFormsApp1
         //displays data from database
         public void LoadData()
         {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-
-                string query = "SELECT * FROM Items";
-
-                /*using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, connection))
-                {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
-                    dataGridView2.DataSource = dataTable;
-                }*/
-                //DBConnect.LoadPeople();
-                dataGridView2.DataSource = DBConnect.LoadPeople();
-            }
+            dataGridView2.DataSource = DBConnect.LoadPeople();
         }
         //leads to popup that allows data to be input
             private void button1_Click(object sender, EventArgs e)
