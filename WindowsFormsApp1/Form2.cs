@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
         //displays data from database
         public void LoadData()
         {
-            dataGridView2.DataSource = DBConnect.LoadPeople();
+            dataGridView2.DataSource = DBConnect.LoadItem();
         }
         //leads to popup that allows data to be input
             private void button1_Click(object sender, EventArgs e)

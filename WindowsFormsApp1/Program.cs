@@ -20,9 +20,6 @@ namespace WindowsFormsApp1
             Application.SetCompatibleTextRenderingDefault(false);
             mainDisplay = new Form2();
             Application.Run(mainDisplay);
-            //Add an item to test
-            //Item i = new Item { ItemName = "shirt", Cost = 19f };
-            //DBConnect.SavePeople(i);
 
             
         }

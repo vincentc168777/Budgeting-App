@@ -15,8 +15,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form3 : Form
     {
-        ///SQLiteConnection conn = new SQLiteConnection("Data Source=testdb.db;");
-        //SQLiteCommand command;
+        
         public Form3()
         {
             InitializeComponent();
@@ -24,14 +23,13 @@ namespace WindowsFormsApp1
         //this button saves transaction info into database
         private void button1_Click(object sender, EventArgs e)
         {
-            //conn.Open();
-            //command = new SQLiteCommand("INSERT INTO Items (ItemName, Cost) VALUES (@ItemName, @Cost)", conn);
-            //command.ExecuteNonQuery();
+            
             Item item = new Item();
             item.ItemName = textBox1.Text;
   
             item.Cost = (float) Convert.ToDouble(textBox2.Text);
-            DBConnect.SavePeople(item);
+
+            DBConnect.SaveItem(item);
             MessageBox.Show("Transaction Entry Saved");
             this.Close();
             Program.mainDisplay.LoadData();
