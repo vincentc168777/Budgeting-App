@@ -24,9 +24,7 @@ namespace WindowsFormsApp1
         //this button saves transaction info into database
         private void button1_Click(object sender, EventArgs e)
         {
-            //conn.Open();
-            //command = new SQLiteCommand("INSERT INTO Items (ItemName, Cost) VALUES (@ItemName, @Cost)", conn);
-            //command.ExecuteNonQuery();
+            
             Item item = new Item();
             item.ItemName = textBox1.Text;
   

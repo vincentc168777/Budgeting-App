@@ -31,6 +31,25 @@ namespace WindowsFormsApp1
             }
         }
 
+        /*
+        
+        public static float displayBudget()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                float output = cnn.Query<Budget>("SELECT * FROM Budgets ORDER BY column DESC LIMIT 1;", new DynamicParameters());
+                return output;
+            }
+        }
+
+        public static void saveBudget(Budget newBudget) {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("insert into Budgets (budgetPrice) values (@budgetPrice)", newBudget);
+            }
+        }
+         */
+
         private static string LoadConnString(string id = "Default")
         {
             // allos us to talk to app.config

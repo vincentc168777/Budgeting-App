@@ -30,14 +30,7 @@ namespace WindowsFormsApp1
 
                 string query = "SELECT * FROM Items";
 
-                /*using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, connection))
-                {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
-                    dataGridView2.DataSource = dataTable;
-                }*/
-                //DBConnect.LoadPeople();
+               
                 dataGridView2.DataSource = DBConnect.LoadPeople();
             }
         }
@@ -92,6 +85,31 @@ namespace WindowsFormsApp1
         { 
 
         }
-        
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form4 f4 = new Form4();
+            f4.Show();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            //label3.Text = ;
+        }
     }
 }
