@@ -15,8 +15,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form3 : Form
     {
-        ///SQLiteConnection conn = new SQLiteConnection("Data Source=testdb.db;");
-        //SQLiteCommand command;
+        
         public Form3()
         {
             InitializeComponent();
@@ -26,13 +25,24 @@ namespace WindowsFormsApp1
         {
             
             Item item = new Item();
-            item.ItemName = textBox1.Text;
-  
-            item.Cost = (float) Convert.ToDouble(textBox2.Text);
-            DBConnect.SavePeople(item);
-            MessageBox.Show("Transaction Entry Saved");
-            this.Close();
-            Program.mainDisplay.LoadData();
+            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text))
+            {
+                item.ItemName = textBox1.Text;
+                float i = 0;
+                bool isNum = float.TryParse(textBox2.Text, out i);
+                if (isNum)
+                {
+                    item.Cost = i;
+
+                    DBConnect.SaveItem(item);
+                    MessageBox.Show("Transaction Entry Saved");
+                    this.Close();
+                    Program.mainDisplay.LoadData();
+                }
+
+                
+            }
+            
 
           
         }

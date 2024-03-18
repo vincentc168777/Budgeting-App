@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
 {
     internal class DBConnect
     {
-        public static List<Item> LoadPeople()
+        public static List<Item> LoadItem()
         {
             // using statemnt opens connection and no matter what happens, whether we finish running this or we crash, the connection to db will close
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public static void SavePeople(Item newItem)
+        public static void SaveItem(Item newItem)
         {
             // using statemnt opens connection and no matter what happens, whether we finish running this or we crash, the connection to db will close
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
