@@ -90,18 +90,20 @@ namespace WindowsFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            //label3.Text = DBConnect.displayBudget().toString();
+            //label5.Text = DBConnect.displayTotal().ToString();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Form4 f4 = new Form4();
             f4.Show();
+
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            //label3.Text = ;
+  
         }
     }
 }

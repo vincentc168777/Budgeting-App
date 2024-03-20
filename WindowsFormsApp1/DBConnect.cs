@@ -41,14 +41,24 @@ namespace WindowsFormsApp1
                 return output;
             }
         }
-
+        
         public static void saveBudget(Budget newBudget) {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
                 cnn.Execute("insert into Budgets (budgetPrice) values (@budgetPrice)", newBudget);
             }
         }
-         */
+        
+        public static float displayTotal()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                var output = (float) Convert.ToDouble(cnn.Query<Item>("SELECT SUM(Cost) FROM Items", new DynamicParameters()));
+                return output;
+            }
+        }
+        */
+
 
         private static string LoadConnString(string id = "Default")
         {

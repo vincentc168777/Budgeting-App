@@ -25,7 +25,7 @@ namespace WindowsFormsApp1
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            //textBox1.Text = "SELECT * FROM Items ORDER BY column DESC LIMIT 1";
+            
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
             this.Close();
             //DBConnect.SaveBudget(budget);
             MessageBox.Show("Budget Updated!");
-            //displayBudget();
+            //label4.Text = DBConnect.displayBudget();
 
         }
     }
