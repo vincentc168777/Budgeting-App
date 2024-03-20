@@ -19,6 +19,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             LoadData();
+            
         }
 
         //displays data from database
