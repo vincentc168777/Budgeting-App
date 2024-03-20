@@ -10,7 +10,7 @@ using Dapper;
 
 namespace WindowsFormsApp1
 {
-    internal class DBConnect
+    internal static class DBConnect
     {
         public static List<Item> LoadItem()
         {
@@ -28,6 +28,17 @@ namespace WindowsFormsApp1
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
                 cnn.Execute("insert into Items (ItemName, Cost) values (@ItemName, @Cost)", newItem);
+            }
+        }
+
+        public static void createBudgetTable()
+        {
+            
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("create table Budget(" +
+                    "ID INT PRIMARY KEY     NOT NULL," +
+                    "budgetPrice            REAL)");
             }
         }
 
