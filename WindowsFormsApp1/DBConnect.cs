@@ -42,21 +42,21 @@ namespace WindowsFormsApp1
             }
         }
 
-        /*
+        
         
         public static float displayBudget()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
-                float output = cnn.Query<Budget>("SELECT * FROM Budgets ORDER BY column DESC LIMIT 1;", new DynamicParameters());
-                return output;
+                MyBudget output = cnn.QueryFirstOrDefault<MyBudget>("SELECT * FROM Budget ORDER BY column DESC LIMIT 1");
+                return output.getMyBudget();
             }
         }
         
-        public static void saveBudget(Budget newBudget) {
+        public static void saveBudget(MyBudget newBudget) {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
-                cnn.Execute("insert into Budgets (budgetPrice) values (@budgetPrice)", newBudget);
+                cnn.Execute("insert into Budget (budgetPrice) values (@budgetPrice)", newBudget);
             }
         }
         
@@ -64,11 +64,11 @@ namespace WindowsFormsApp1
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
-                var output = (float) Convert.ToDouble(cnn.Query<Item>("SELECT SUM(Cost) FROM Items", new DynamicParameters()));
-                return output;
+                Item output = cnn.QueryFirstOrDefault<Item>("SELECT SUM(Cost) FROM Items", new DynamicParameters());
+                return output.Cost;
             }
         }
-        */
+        
 
 
         private static string LoadConnString(string id = "Default")

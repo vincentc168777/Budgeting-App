@@ -91,8 +91,8 @@ namespace WindowsFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            //label3.Text = DBConnect.displayBudget().toString();
-            //label5.Text = DBConnect.displayTotal().ToString();
+            //label4.Text = Convert.ToString(DBConnect.displayBudget());
+            label5.Text = Convert.ToString(DBConnect.displayTotal());
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -105,6 +105,11 @@ namespace WindowsFormsApp1
         private void label3_Click(object sender, EventArgs e)
         {
   
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
