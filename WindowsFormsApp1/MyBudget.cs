@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     internal class MyBudget
     {
-        float b;
+        private float b;
         public float getMyBudget()
         {
             return b;

@@ -64,10 +64,16 @@ namespace WindowsFormsApp1
         //supposed to display the total cost of all expenses
         public static float displayTotal()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            float total = 0;
+            List<Item> allItems = LoadItem();
+            if (allItems.Count != 0 || allItems != null)
             {
-                return cnn.QueryFirstOrDefault<float>("SELECT SUM(Cost) FROM Items", null);
+                foreach (Item i in allItems)
+                {
+                    total += i.Cost;
+                }
             }
+            return total;
         }
         
 
