@@ -38,6 +38,10 @@ namespace WindowsFormsApp1
                     MessageBox.Show("Transaction Entry Saved");
                     this.Close();
                     Program.mainDisplay.LoadData();
+                    if (DBConnect.displayBudget() < (DBConnect.displayTotal()))
+                    {
+                        MessageBox.Show("Total spending exceeds budget.", "Warning");
+                    }
                 }
 
                 

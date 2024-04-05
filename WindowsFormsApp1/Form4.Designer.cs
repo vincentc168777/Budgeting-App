@@ -36,6 +36,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -54,9 +55,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(14, 243);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 29);
+            this.label2.Size = new System.Drawing.Size(207, 29);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Edit Budget:";
+            this.label2.Text = "Configure Budget:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button1
@@ -119,11 +120,22 @@
             this.label6.TabIndex = 7;
             this.label6.Text = "$";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(272, 137);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 29);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "label7";
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -150,5 +162,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

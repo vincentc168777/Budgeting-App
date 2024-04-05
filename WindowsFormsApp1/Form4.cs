@@ -35,21 +35,21 @@ namespace WindowsFormsApp1
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            
+            label7.Text = Convert.ToString(DBConnect.displayBudget());
         }
 
+        //ui of saving budget info
         private void button1_Click(object sender, EventArgs e)
         {
             MyBudget budget = new MyBudget();
             
              if (textBox1.Text != null) {
-                var output = (float) Convert.ToDouble(textBox1.Text);
+                float output = (float) Convert.ToDouble(textBox1.Text);
                 this.Close();
-                DBConnect.saveBudget(budget);
-                //budget.setMyBudget(output);
+                DBConnect.saveBudget(output);
                 MessageBox.Show("Budget Updated!");
-                label4.Text = Convert.ToString(DBConnect.displayBudget());
-             }
+                Program.mainDisplay.LoadData();
+            }
              
 
         }

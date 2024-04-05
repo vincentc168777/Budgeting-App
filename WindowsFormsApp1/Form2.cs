@@ -26,6 +26,10 @@ namespace WindowsFormsApp1
         public void LoadData()
         {
             dataGridView2.DataSource = DBConnect.LoadItem();
+            label3.Text = Convert.ToString(DBConnect.displayBudget());
+            label5.Text = Convert.ToString(DBConnect.displayTotal());
+            
+
         }
         //leads to popup that allows data to be input
             private void button1_Click(object sender, EventArgs e)
@@ -91,8 +95,8 @@ namespace WindowsFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            //label4.Text = Convert.ToString(DBConnect.displayBudget());
-            label5.Text = Convert.ToString(DBConnect.displayTotal());
+            
+
         }
 
         private void button3_Click(object sender, EventArgs e)

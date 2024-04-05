@@ -7,11 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using Dapper;
+using System.IO;
 
 namespace WindowsFormsApp1
 {
     internal static class DBConnect
     {
+        /*public static void createBudgetTable()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("create table if not exists Budget(" +
+                    "ID INT PRIMARY KEY     NOT NULL," +
+                    "budgetPrice            REAL)");
+
+            }
+        }*/
         public static List<Item> LoadItem()
         {
             // using statemnt opens connection and no matter what happens, whether we finish running this or we crash, the connection to db will close
@@ -31,41 +42,31 @@ namespace WindowsFormsApp1
             }
         }
 
-        public static void createBudgetTable()
-        {
-            
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
-            {
-                cnn.Execute("create table Budget(" +
-                    "ID INT PRIMARY KEY     NOT NULL," +
-                    "budgetPrice            REAL)");
-            }
-        }
+        
 
-        
-        
+        //supposed to display most recent Budget entry
         public static float displayBudget()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
-            {
-                MyBudget output = cnn.QueryFirstOrDefault<MyBudget>("SELECT * FROM Budget ORDER BY column DESC LIMIT 1");
-                return output.getMyBudget();
-            }
+                using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+                {
+                    return cnn.QueryFirstOrDefault<float>("SELECT budgetPrice FROM Budget ORDER BY ID DESC LIMIT 1");
+                }
+        }
+
+        //supposed to save budget into Budget table
+        public static void saveBudget(float f) {
+                using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+                {
+                    cnn.Execute("insert into Budget (budgetPrice) values (@budgetPrice)", new { budgetPrice = f });
+                }
         }
         
-        public static void saveBudget(MyBudget newBudget) {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
-            {
-                cnn.Execute("insert into Budget (budgetPrice) values (@budgetPrice)", newBudget);
-            }
-        }
-        
+        //supposed to display the total cost of all expenses
         public static float displayTotal()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
-                Item output = cnn.QueryFirstOrDefault<Item>("SELECT SUM(Cost) FROM Items", new DynamicParameters());
-                return output.Cost;
+                return cnn.QueryFirstOrDefault<float>("SELECT SUM(Cost) FROM Items", null);
             }
         }
         
@@ -76,6 +77,5 @@ namespace WindowsFormsApp1
             // allos us to talk to app.config
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
-
     }
 }
