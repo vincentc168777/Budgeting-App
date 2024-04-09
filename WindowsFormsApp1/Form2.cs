@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             LoadData();
-            
+            DBConnect.clearData();
         }
 
         //displays data from database

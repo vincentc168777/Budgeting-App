@@ -23,6 +23,15 @@ namespace WindowsFormsApp1
 
             }
         }*/
+
+        public static void clearData()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("DELETE FROM Budget");
+                cnn.Execute("VACUUM");
+            }
+        }
         public static List<Item> LoadItem()
         {
             // using statemnt opens connection and no matter what happens, whether we finish running this or we crash, the connection to db will close
@@ -49,16 +58,27 @@ namespace WindowsFormsApp1
         {
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
                 {
-                    return cnn.QueryFirstOrDefault<float>("SELECT budgetPrice FROM Budget ORDER BY ID DESC LIMIT 1");
+                    return cnn.QueryFirstOrDefault<float>("SELECT budgetPrice FROM Budget LIMIT 1", 0f);
                 }
         }
 
         //supposed to save budget into Budget table
         public static void saveBudget(float f) {
-                using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                MyBudget b = new MyBudget();
+                b.setMyBudget(f);
+                int budCount = cnn.ExecuteScalar<int>("SELECT COUNT(*) FROM Budget");
+                if(budCount == 0)
                 {
-                    cnn.Execute("insert into Budget (budgetPrice) values (@budgetPrice)", new { budgetPrice = f });
+                    cnn.Execute("insert into Budget (budgetPrice) values (" + b.getMyBudget() +")");
                 }
+                else
+                {
+                    cnn.Execute("update Budget SET budgetPrice = " + b.getMyBudget() + " WHERE ID = 1");
+                }
+                    
+            }
         }
         
         //supposed to display the total cost of all expenses
