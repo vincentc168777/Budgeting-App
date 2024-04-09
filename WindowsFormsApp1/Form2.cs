@@ -95,8 +95,8 @@ namespace WindowsFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            
-
+            DataGridViewColumn column = dataGridView2.Columns[3];
+            column.Width = 200;
         }
 
         private void button3_Click(object sender, EventArgs e)

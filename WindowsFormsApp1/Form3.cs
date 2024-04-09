@@ -40,7 +40,13 @@ namespace WindowsFormsApp1
                     Program.mainDisplay.LoadData();
                     if (DBConnect.displayBudget() < (DBConnect.displayTotal()))
                     {
-                        MessageBox.Show("Total spending exceeds budget.", "Warning");
+                        MessageBoxButtons b = MessageBoxButtons.YesNo;
+                        DialogResult result = MessageBox.Show("Total spending exceeds budget, would you like to update your budget?.", "Warning", b);
+                        if (result == DialogResult.Yes)
+                        {
+                            Form4 f4 = new Form4();
+                            f4.Show();
+                        }
                     }
                 }
 
