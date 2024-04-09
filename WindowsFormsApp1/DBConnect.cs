@@ -13,23 +13,23 @@ namespace WindowsFormsApp1
 {
     internal static class DBConnect
     {
-        /*public static void createBudgetTable()
+        public static void createBudgetTable()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
                 cnn.Execute("create table if not exists Budget(" +
-                    "ID INT PRIMARY KEY     NOT NULL," +
+                    "ID integer PRIMARY KEY     ," +
                     "budgetPrice            REAL)");
 
             }
-        }*/
+        }
 
         public static void clearData()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
-                cnn.Execute("DELETE FROM Budget");
-                cnn.Execute("VACUUM");
+                cnn.Execute("DROP TABLE Budget");
+
             }
         }
         public static List<Item> LoadItem()
@@ -71,7 +71,7 @@ namespace WindowsFormsApp1
                 int budCount = cnn.ExecuteScalar<int>("SELECT COUNT(*) FROM Budget");
                 if(budCount == 0)
                 {
-                    cnn.Execute("insert into Budget (budgetPrice) values (" + b.getMyBudget() +")");
+                    cnn.Execute("insert into Budget (budgetPrice) values (@budgetPri)", new { budgetPri = f});
                 }
                 else
                 {

@@ -18,8 +18,10 @@ namespace WindowsFormsApp1
         public Form2()
         {
             InitializeComponent();
+            DBConnect.createBudgetTable();
+            //DBConnect.clearData();
             LoadData();
-            DBConnect.clearData();
+            
         }
 
         //displays data from database
