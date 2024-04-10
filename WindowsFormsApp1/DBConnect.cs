@@ -44,6 +44,14 @@ namespace WindowsFormsApp1
             }
         }
 
+        public static void DeleteItem(int itemID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("DELETE FROM Items WHERE Id = " + itemID);
+            }
+        }
+
         public static void SaveItem(Item newItem)
         {
             // using statemnt opens connection and no matter what happens, whether we finish running this or we crash, the connection to db will close
