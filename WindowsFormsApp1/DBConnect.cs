@@ -13,6 +13,7 @@ namespace WindowsFormsApp1
 {
     internal static class DBConnect
     {
+        
         public static void createBudgetTable()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
@@ -32,12 +33,13 @@ namespace WindowsFormsApp1
 
             }
         }
+        
         public static List<Item> LoadItem()
         {
             // using statemnt opens connection and no matter what happens, whether we finish running this or we crash, the connection to db will close
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
-                var output = cnn.Query<Item>("select * from Items", new DynamicParameters());
+                var output = cnn.Query<Item>("select * from Items");
                 return output.ToList();
             }
         }
