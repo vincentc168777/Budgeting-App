@@ -14,7 +14,6 @@ namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
-        
         public Form2()
         {
             InitializeComponent();
@@ -82,10 +81,21 @@ namespace WindowsFormsApp1
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        { 
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView2.Columns["dataGridViewDeleteButton"].Index)
+            {
+                if (dataGridView2.Rows.Count > e.RowIndex) { 
+                    DialogResult result = MessageBox.Show("Are you sure you want to delete this?", "Warning", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        DBConnect.DeleteItem((int)dataGridView2.Rows[e.RowIndex].Cells["ID"].Value);
+                        Program.mainDisplay.LoadData();
 
+                    }
+                }
+            }
         }
-
+        //&& (idVal >= 0 || idVal > DBConnect.getSize()
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -98,8 +108,20 @@ namespace WindowsFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            DataGridViewColumn column = dataGridView2.Columns[3];
-            column.Width = 200;
+            dataGridView2.Columns[1].HeaderText = "Name";
+            dataGridView2.Columns[2].HeaderText = "Price ($)";
+            dataGridView2.Columns[3].HeaderText = "Description";
+            dataGridView2.Columns[1].Width = 150;
+            dataGridView2.Columns[3].Width = 235;
+            DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
+            deleteButton.Name = "dataGridViewDeleteButton";
+            deleteButton.HeaderText = "";
+            deleteButton.Text = "×";
+            deleteButton.UseColumnTextForButtonValue = true;
+            this.dataGridView2.Columns.Add(deleteButton);
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            dataGridView2.Columns["Id"].Visible = false;
+            dataGridView2.Columns["dataGridViewDeleteButton"].Width = 40;
         }
 
         private void button3_Click(object sender, EventArgs e)

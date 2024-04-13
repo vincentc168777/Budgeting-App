@@ -35,7 +35,7 @@ namespace WindowsFormsApp1
                     item.Cost = i;
 
                     DBConnect.SaveItem(item);
-                    MessageBox.Show("Transaction Entry Saved");
+                    MessageBox.Show("Transaction entry saved.");
                     this.Close();
                     Program.mainDisplay.LoadData();
                     if (DBConnect.displayBudget() < (DBConnect.displayTotal()))
@@ -48,6 +48,7 @@ namespace WindowsFormsApp1
                             f4.Show();
                         }
                     }
+                    
                 }
 
                 
