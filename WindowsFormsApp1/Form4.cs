@@ -42,19 +42,17 @@ namespace WindowsFormsApp1
         //ui of saving budget info
         private void button1_Click(object sender, EventArgs e)
         {
-            
-             if (textBox1.Text != null) {
-                float i = 0;
-                bool isNum = float.TryParse(textBox1.Text, out i);
-                if (isNum)
-                {
-                    float output = (float)Convert.ToDouble(textBox1.Text);
-                    this.Close();
-                    DBConnect.saveBudget(output);
-                    MessageBox.Show("Budget Updated!");
-                    Program.mainDisplay.LoadData();
-                }
+            float i = 0;
+            bool isNum = float.TryParse(textBox1.Text, out i);
+
+            if (textBox1.Text != null && isNum) {
                 
+                float output = (float)Convert.ToDouble(textBox1.Text);
+                this.Close();
+                DBConnect.saveBudget(output);
+                MessageBox.Show("Budget Updated!");
+                Program.mainDisplay.LoadData();
+    
             }
              
 

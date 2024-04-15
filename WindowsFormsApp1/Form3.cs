@@ -23,33 +23,29 @@ namespace WindowsFormsApp1
         //this button saves transaction info into database
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            float i = 0;
+            bool isNum = float.TryParse(textBox2.Text, out i);
             Item item = new Item();
-            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text))
+            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && isNum)
             {
                 item.ItemName = textBox1.Text;
-                float i = 0;
-                bool isNum = float.TryParse(textBox2.Text, out i);
-                if (isNum)
+                item.Cost = i;
+                DBConnect.SaveItem(item);
+                MessageBox.Show("Transaction entry saved.");
+                this.Close();
+                Program.mainDisplay.LoadData();
+                if (DBConnect.displayBudget() < (DBConnect.displayTotal()))
                 {
-                    item.Cost = i;
-
-                    DBConnect.SaveItem(item);
-                    MessageBox.Show("Transaction entry saved.");
-                    this.Close();
-                    Program.mainDisplay.LoadData();
-                    if (DBConnect.displayBudget() < (DBConnect.displayTotal()))
+                    MessageBoxButtons b = MessageBoxButtons.YesNo;
+                    DialogResult result = MessageBox.Show("Total spending exceeds budget, would you like to update your budget?.", "Warning", b);
+                    if (result == DialogResult.Yes)
                     {
-                        MessageBoxButtons b = MessageBoxButtons.YesNo;
-                        DialogResult result = MessageBox.Show("Total spending exceeds budget, would you like to update your budget?.", "Warning", b);
-                        if (result == DialogResult.Yes)
-                        {
-                            Form4 f4 = new Form4();
-                            f4.Show();
-                        }
+                        Form4 f4 = new Form4();
+                        f4.Show();
                     }
-                    
                 }
+                    
+                
 
                 
             }
