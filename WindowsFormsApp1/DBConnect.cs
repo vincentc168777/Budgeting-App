@@ -48,7 +48,7 @@ namespace WindowsFormsApp1
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
-                cnn.Execute("DELETE FROM Items WHERE Id = " + itemID);
+                cnn.Execute("DELETE FROM Items WHERE Id = @Id", new { Id = itemID});
             }
         }
 
@@ -105,8 +105,6 @@ namespace WindowsFormsApp1
             }
             return total;
         }
-        
-
 
         private static string LoadConnString(string id = "Default")
         {
