@@ -31,27 +31,42 @@ namespace WindowsFormsApp1
                 item.ItemName = textBox1.Text;
                 item.Cost = i;
                 DBConnect.SaveItem(item);
-                MessageBox.Show("Transaction entry saved.");
-                this.Close();
+                
+                DialogResult resultEntry = MessageBox.Show("Transaction entry saved. Would you like to add another entry?", "Success", MessageBoxButtons.YesNo);
+                if (resultEntry == DialogResult.No)
+                {
+                    this.Close();
+                    
+                    
+                }
+                
                 Program.mainDisplay.LoadData();
+                textBox1.Clear();
+                textBox2.Clear();
+
+                
+
                 if (DBConnect.displayBudget() < (DBConnect.displayTotal()))
                 {
-                    MessageBoxButtons b = MessageBoxButtons.YesNo;
-                    DialogResult result = MessageBox.Show("Total spending exceeds budget, would you like to update your budget?.", "Warning", b);
-                    if (result == DialogResult.Yes)
+                    DialogResult resultBudget = MessageBox.Show("Total spending exceeds budget, would you like to update your budget?.", "Warning", MessageBoxButtons.YesNo);
+                    if (resultBudget == DialogResult.Yes)
                     {
                         Form4 f4 = new Form4();
                         f4.Show();
                     }
                 }
+                
                     
                 
 
                 
             }
-            
+            else
+            {
+                MessageBox.Show("Invalid or missing values.", "Warning");
+            }
 
-          
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

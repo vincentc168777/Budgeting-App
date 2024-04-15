@@ -30,7 +30,6 @@ namespace WindowsFormsApp1
             dataGridView2.DataSource = DBConnect.LoadItem();
             label3.Text = Convert.ToString(DBConnect.displayBudget());
             label5.Text = Convert.ToString(DBConnect.displayTotal());
-            
 
         }
         //leads to popup that allows data to be input
@@ -112,7 +111,7 @@ namespace WindowsFormsApp1
             dataGridView2.Columns[2].HeaderText = "Price ($)";
             dataGridView2.Columns[3].HeaderText = "Description";
             dataGridView2.Columns[1].Width = 150;
-            dataGridView2.Columns[3].Width = 235;
+            dataGridView2.Columns[3].Width = 215;
             DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
             deleteButton.Name = "dataGridViewDeleteButton";
             deleteButton.HeaderText = "";
@@ -137,6 +136,16 @@ namespace WindowsFormsApp1
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
         {
 
         }

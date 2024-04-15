@@ -54,6 +54,10 @@ namespace WindowsFormsApp1
                 Program.mainDisplay.LoadData();
     
             }
+            else
+            {
+                MessageBox.Show("Invalid value.", "Warning");
+            }
              
 
         }
