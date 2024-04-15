@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1
 {
@@ -41,14 +42,19 @@ namespace WindowsFormsApp1
         //ui of saving budget info
         private void button1_Click(object sender, EventArgs e)
         {
-            MyBudget budget = new MyBudget();
             
              if (textBox1.Text != null) {
-                float output = (float) Convert.ToDouble(textBox1.Text);
-                this.Close();
-                DBConnect.saveBudget(output);
-                MessageBox.Show("Budget Updated!");
-                Program.mainDisplay.LoadData();
+                float i = 0;
+                bool isNum = float.TryParse(textBox1.Text, out i);
+                if (isNum)
+                {
+                    float output = (float)Convert.ToDouble(textBox1.Text);
+                    this.Close();
+                    DBConnect.saveBudget(output);
+                    MessageBox.Show("Budget Updated!");
+                    Program.mainDisplay.LoadData();
+                }
+                
             }
              
 
