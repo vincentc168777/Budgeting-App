@@ -44,15 +44,28 @@ namespace WindowsFormsApp1
                 textBox1.Clear();
                 textBox2.Clear();
 
-                
+
 
                 if (DBConnect.displayBudget() < (DBConnect.displayTotal()))
                 {
-                    DialogResult resultBudget = MessageBox.Show("Total spending exceeds budget, would you like to update your budget?.", "Warning", MessageBoxButtons.YesNo);
-                    if (resultBudget == DialogResult.Yes)
+                    bool form3open = false;
+                    FormCollection fc = Application.OpenForms;
+
+                    foreach (Form frm in fc)
                     {
-                        Form4 f4 = new Form4();
-                        f4.Show();
+                        if (frm.Name == "Form3")
+                        {
+                            form3open = true;
+                        }
+                    }
+                    if (!form3open)
+                    {
+                        DialogResult resultBudget = MessageBox.Show("Total spending exceeds budget, would you like to update your budget?.", "Warning", MessageBoxButtons.YesNo);
+                        if (resultBudget == DialogResult.Yes)
+                        {
+                            Form4 f4 = new Form4();
+                            f4.Show();
+                        }
                     }
                 }
                 
