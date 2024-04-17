@@ -126,7 +126,7 @@ namespace WindowsFormsApp1
         {
             dataGridView2.Columns[1].HeaderText = "Name";
             dataGridView2.Columns[2].HeaderText = "Price ($)";
-            
+
             dataGridView2.Columns[1].Width = 150;
             
             DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
@@ -142,8 +142,21 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form4 f4 = new Form4();
-            f4.Show();
+            bool form4open = false;
+            FormCollection fc = Application.OpenForms;
+
+            foreach (Form frm in fc)
+            {
+                if (frm.Name == "Form4")
+                {
+                    form4open = true;
+                }
+            }
+            if (!form4open)
+            {
+                Form4 f4 = new Form4();
+                f4.Show();
+            }
 
         }
 
