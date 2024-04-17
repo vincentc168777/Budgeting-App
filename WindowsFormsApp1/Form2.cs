@@ -27,6 +27,7 @@ namespace WindowsFormsApp1
         //displays data from database
         public void LoadData()
         {
+            
             dataGridView2.DataSource = DBConnect.LoadItem();
             label3.Text = Convert.ToString(DBConnect.displayBudget());
             label5.Text = Convert.ToString(DBConnect.displayTotal());
@@ -35,8 +36,21 @@ namespace WindowsFormsApp1
         //leads to popup that allows data to be input
             private void button1_Click(object sender, EventArgs e)
         {
-            Form3 f3 = new Form3();
-            f3.Show();
+            bool form3open = false;
+            FormCollection fc = Application.OpenForms;
+
+            foreach (Form frm in fc)
+            {
+                if (frm.Name == "Form3")
+                {
+                    form3open = true;
+                }
+            }
+            if (!form3open)
+            {
+                Form3 f3 = new Form3();
+                f3.Show();
+            }
         }
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
