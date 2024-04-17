@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using Dapper;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp1
 {
@@ -21,7 +22,9 @@ namespace WindowsFormsApp1
             //DBConnect.clearData();
             //DBConnect.createBudgetTable();
             LoadData();
-            
+            textBox1.KeyUp += textBox1_KeyUp;
+
+
         }
 
         //displays data from database
@@ -159,9 +162,14 @@ namespace WindowsFormsApp1
             
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             dataGridView2.DataSource = DBConnect.GetItemsWithLetters(textBox1.Text);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            
         }
     }
 }
