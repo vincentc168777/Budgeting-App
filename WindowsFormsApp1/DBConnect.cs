@@ -61,7 +61,16 @@ namespace WindowsFormsApp1
             }
         }
 
-        
+        public static List<Item> GetItemsWithLetters(string input)
+        {
+            
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                var res = cnn.Query<Item>("SELECT * FROM Items WHERE ItemName Like '%" + input + "%'");
+                return res.ToList();
+
+            }
+        }
 
         //supposed to display most recent Budget entry
         public static float displayBudget()
