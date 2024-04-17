@@ -123,9 +123,9 @@ namespace WindowsFormsApp1
         {
             dataGridView2.Columns[1].HeaderText = "Name";
             dataGridView2.Columns[2].HeaderText = "Price ($)";
-            dataGridView2.Columns[3].HeaderText = "Description";
+            
             dataGridView2.Columns[1].Width = 150;
-            dataGridView2.Columns[3].Width = 215;
+            
             DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
             deleteButton.Name = "dataGridViewDeleteButton";
             deleteButton.HeaderText = "";
@@ -156,12 +156,12 @@ namespace WindowsFormsApp1
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-
+            dataGridView2.DataSource = DBConnect.GetItemsWithLetters(textBox1.Text);
         }
     }
 }

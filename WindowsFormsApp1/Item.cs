@@ -13,12 +13,6 @@ namespace WindowsFormsApp1
         public string ItemName { get; set; }
         public float Cost { get; set; }
 
-        public string PrintItem
-        {
-            get
-            {
-                return $"{ItemName} {Cost}";
-            }
-        }
+       
     }
 }
