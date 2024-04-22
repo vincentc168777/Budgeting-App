@@ -52,12 +52,92 @@ namespace WindowsFormsApp1
             }
         }
 
+        //add description column
+        public static void AddDescription()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("ALTER TABLE Items " +
+                    "ADD Description TEXT");
+            }
+        }
+
+        //check if description column already exists
+        public static bool ColumnExists()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                
+                var cmd = cnn.CreateCommand();
+                cmd.CommandText = string.Format("PRAGMA table_info('Items')");
+                cnn.Open();
+                var reader = cmd.ExecuteReader();
+                int nameIndex = reader.GetOrdinal("Name");
+                while (reader.Read())
+                {
+                    if (reader.GetString(nameIndex).Equals("Description"))
+                    {
+                        reader.Close();
+                        return true;
+                    }
+                }
+                reader.Close();
+            }
+            return false;
+        }
+
+        public static void EditItem(int itemID, string newItemName, decimal newCost, string newDescription)
+        {
+            if (!ColumnExists())
+            {
+                AddDescription();
+            }
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("UPDATE Items " +
+                    "SET ItemName = @ItemName, Cost = @Cost, Description = @Description " +
+                    "WHERE Id = @Id;", new { Id = itemID, ItemName = newItemName, Cost = newCost, Description = newDescription });
+            }
+        }
+
+        public static string getName(int itemID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                return cnn.QueryFirstOrDefault<string>("SELECT ItemName FROM Items WHERE Id=@Id", new { Id = itemID });
+            }
+        }
+
+        public static float getCost(int itemID)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                return cnn.QueryFirstOrDefault<float>("SELECT Cost FROM Items WHERE Id=@Id", new { Id = itemID });
+            }
+        }
+
+        public static string getDescription(int itemID)
+        {
+            if (!ColumnExists())
+            {
+                AddDescription();
+            }
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                return cnn.QueryFirstOrDefault<string>("SELECT Description FROM Items WHERE Id=@Id", new { Id = itemID });
+            }
+        }
+
         public static void SaveItem(Item newItem)
         {
+            if (!ColumnExists())
+            {
+                AddDescription();
+            }
             // using statemnt opens connection and no matter what happens, whether we finish running this or we crash, the connection to db will close
             using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
             {
-                cnn.Execute("insert into Items (ItemName, Cost) values (@ItemName, @Cost)", newItem);
+                cnn.Execute("insert into Items (ItemName, Cost, Description) values (@ItemName, @Cost, @Description)", newItem);
             }
         }
 

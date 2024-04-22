@@ -110,8 +110,29 @@ namespace WindowsFormsApp1
                     }
                 }
             }
+            else if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView2.Columns["dataGridViewEditButton"].Index)
+            {
+                if (dataGridView2.Rows.Count > e.RowIndex)
+                {
+                    bool form5open = false;
+                    FormCollection fc = Application.OpenForms;
+
+                    foreach (Form frm in fc)
+                    {
+                        if (frm.Name == "Form5")
+                        {
+                            form5open = true;
+                        }
+                    }
+                    if (!form5open)
+                    {
+                            Form5 f5 = new Form5((int)dataGridView2.Rows[e.RowIndex].Cells["ID"].Value);
+                            f5.Show();
+                    }
+                }
+            }
         }
-        //&& (idVal >= 0 || idVal > DBConnect.getSize()
+
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -127,17 +148,29 @@ namespace WindowsFormsApp1
             dataGridView2.Columns[1].HeaderText = "Name";
             dataGridView2.Columns[2].HeaderText = "Price ($)";
 
-            dataGridView2.Columns[1].Width = 150;
-            
+            dataGridView2.Columns[1].Width = 130;
+
+            dataGridView2.Columns["description"].Width = 185;
+
+            DataGridViewButtonColumn editButton = new DataGridViewButtonColumn();
+            editButton.Name = "dataGridViewEditButton";
+            editButton.HeaderText = "";
+            editButton.Text = "Edit";
+            editButton.UseColumnTextForButtonValue = true;
+            this.dataGridView2.Columns.Add(editButton);
+            dataGridView2.Columns["dataGridViewEditButton"].Width = 50;
+
             DataGridViewButtonColumn deleteButton = new DataGridViewButtonColumn();
             deleteButton.Name = "dataGridViewDeleteButton";
             deleteButton.HeaderText = "";
             deleteButton.Text = "×";
             deleteButton.UseColumnTextForButtonValue = true;
             this.dataGridView2.Columns.Add(deleteButton);
+
             dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             dataGridView2.Columns["Id"].Visible = false;
             dataGridView2.Columns["dataGridViewDeleteButton"].Width = 40;
+
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -30,6 +30,7 @@ namespace WindowsFormsApp1
             {
                 item.ItemName = textBox1.Text;
                 item.Cost = i;
+                item.Description = textBox3.Text;
                 DBConnect.SaveItem(item);
                 
                 DialogResult resultEntry = MessageBox.Show("Transaction entry saved. Would you like to add another entry?", "Success", MessageBoxButtons.YesNo);
@@ -43,6 +44,7 @@ namespace WindowsFormsApp1
                 Program.mainDisplay.LoadData();
                 textBox1.Clear();
                 textBox2.Clear();
+                textBox3.Clear();  
 
 
 
@@ -83,6 +85,11 @@ namespace WindowsFormsApp1
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }

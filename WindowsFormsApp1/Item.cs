@@ -13,6 +13,8 @@ namespace WindowsFormsApp1
         public string ItemName { get; set; }
         public float Cost { get; set; }
 
-       
+        public string Description { get; set; }
+
+
     }
 }
