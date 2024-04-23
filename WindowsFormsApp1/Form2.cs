@@ -11,7 +11,7 @@ namespace WindowsFormsApp1
         public Form2()
         {
             InitializeComponent();
-            
+            this.Text = "Transactions Home";
             //DBConnect.clearData();
             //DBConnect.createBudgetTable();
             LoadData();
