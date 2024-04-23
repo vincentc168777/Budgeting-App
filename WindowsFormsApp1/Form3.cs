@@ -10,6 +10,7 @@ namespace WindowsFormsApp1
         public Form3()
         {
             InitializeComponent();
+            this.Text = "Add Item";
         }
         //this button saves transaction info into database
         private void button1_Click(object sender, EventArgs e)

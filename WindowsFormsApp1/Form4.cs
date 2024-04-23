@@ -10,6 +10,7 @@ namespace WindowsFormsApp1
         public Form4()
         {
             InitializeComponent();
+            this.Text = "Modify Budget";
         }
 
         private void label2_Click(object sender, EventArgs e)

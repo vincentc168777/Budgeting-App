@@ -9,6 +9,7 @@ namespace WindowsFormsApp1
         public Form5(int i)
         {
             InitializeComponent();
+            this.Text = "Edit Your Item";
             id = i;
         }
 
