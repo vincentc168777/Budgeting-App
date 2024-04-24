@@ -1,6 +1,5 @@
 ﻿using System;
-
-
+using System.Drawing;
 using System.Windows.Forms;
 
 
@@ -17,7 +16,7 @@ namespace WindowsFormsApp1
             LoadData();
             textBox1.KeyUp += textBox1_KeyUp;
 
-
+           
         }
 
         //displays data from database
@@ -29,6 +28,12 @@ namespace WindowsFormsApp1
             label5.Text = Convert.ToString(DBConnect.displayTotal());
 
         }
+
+        private void WindowScaling()
+        {
+            this.Scale(AutoScaleFactor);
+        }
+
         //leads to popup that allows data to be input
             private void button1_Click(object sender, EventArgs e)
         {
@@ -210,5 +215,7 @@ namespace WindowsFormsApp1
         {
             
         }
+
+
     }
 }
