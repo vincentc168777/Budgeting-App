@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
             LoadData();
             textBox1.KeyUp += textBox1_KeyUp;
 
+            
            
         }
 
@@ -27,11 +28,6 @@ namespace WindowsFormsApp1
             label3.Text = Convert.ToString(DBConnect.displayBudget());
             label5.Text = Convert.ToString(DBConnect.displayTotal());
 
-        }
-
-        private void WindowScaling()
-        {
-            this.Scale(AutoScaleFactor);
         }
 
         //leads to popup that allows data to be input
