@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 
@@ -10,13 +11,12 @@ namespace WindowsFormsApp1
         public Form2()
         {
             InitializeComponent();
-            this.Text = "Transactions Home";
+            this.Text = "Your Transactions";
             //DBConnect.clearData();
             //DBConnect.createBudgetTable();
             LoadData();
             textBox1.KeyUp += textBox1_KeyUp;
 
-            
            
         }
 

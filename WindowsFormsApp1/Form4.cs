@@ -1,6 +1,8 @@
 ﻿using System;
-
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 
 namespace WindowsFormsApp1
@@ -11,6 +13,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             this.Text = "Modify Budget";
+            loadBudgetImage();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -54,6 +57,24 @@ namespace WindowsFormsApp1
             }
              
 
+        }
+
+        private void loadBudgetImage()
+        {
+            string picPath = Path.Combine(Environment.CurrentDirectory, "pictures") ;
+            float bud = DBConnect.displayBudget();
+            if(bud == 0)
+            {
+                pictureBox1.BackgroundImage = Image.FromFile(picPath + @"\emptywallet.jpg");
+            }
+            else if(bud > 0 && bud < 100f)
+            {
+                pictureBox1.BackgroundImage = Image.FromFile(picPath + @"\almostempty.jpg");
+            }
+            else{
+
+            }
+            
         }
     }
 }
