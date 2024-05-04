@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Windows.Forms;
 
 
@@ -10,13 +12,12 @@ namespace WindowsFormsApp1
         public Form2()
         {
             InitializeComponent();
-            this.Text = "Transactions Home";
+            this.Text = "Your Transactions";
             //DBConnect.clearData();
             //DBConnect.createBudgetTable();
             LoadData();
             textBox1.KeyUp += textBox1_KeyUp;
 
-            
            
         }
 
@@ -92,6 +93,7 @@ namespace WindowsFormsApp1
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView2.Columns["dataGridViewDeleteButton"].Index)
             {
                 if (dataGridView2.Rows.Count > e.RowIndex) {

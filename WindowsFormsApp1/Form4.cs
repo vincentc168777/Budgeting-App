@@ -1,6 +1,8 @@
 ﻿using System;
-
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 
 namespace WindowsFormsApp1
@@ -10,7 +12,10 @@ namespace WindowsFormsApp1
         public Form4()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Text = "Modify Budget";
+            loadBudgetImage();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -36,14 +41,13 @@ namespace WindowsFormsApp1
         //ui of saving budget info
         private void button1_Click(object sender, EventArgs e)
         {
-            float i = 0;
+            float i;
             bool isNum = float.TryParse(textBox1.Text, out i);
 
-            if (textBox1.Text != null && isNum) {
+            if (isNum && i >=0 ) {
                 
-                float output = (float)Convert.ToDouble(textBox1.Text);
                 this.Close();
-                DBConnect.saveBudget(output);
+                DBConnect.saveBudget(i);
                 MessageBox.Show("Budget Updated!");
                 Program.mainDisplay.LoadData();
     
@@ -53,6 +57,25 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Invalid value.", "Warning");
             }
              
+
+        }
+
+        private void loadBudgetImage()
+        {
+            //loads diff image depending on ur budget amount
+            string picPath = Path.Combine(Environment.CurrentDirectory, "pictures") ;
+            float bud = DBConnect.displayBudget();
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+            if (bud == 0)
+            {
+                pictureBox1.Image = Image.FromFile(picPath + @"\empty.png");
+            }
+            else 
+            {
+                pictureBox1.Image = Image.FromFile(picPath + @"\filled.png");
+            }
+            
 
         }
     }
