@@ -94,14 +94,23 @@ namespace WindowsFormsApp1
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView2.Columns["dataGridViewDeleteButton"].Index)
             {
-                if (dataGridView2.Rows.Count > e.RowIndex) { 
-                    DialogResult result = MessageBox.Show("Are you sure you want to delete this?", "Warning", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-                        DBConnect.DeleteItem((int)dataGridView2.Rows[e.RowIndex].Cells["ID"].Value);
-                        Program.mainDisplay.LoadData();
+                if (dataGridView2.Rows.Count > e.RowIndex) {
+                    bool form6open = false;
+                    FormCollection fc = Application.OpenForms;
 
+                    foreach (Form frm in fc)
+                    {
+                        if (frm.Name == "Form6")
+                        {
+                            form6open = true;
+                        }
                     }
+                    if (!form6open)
+                    {
+                        Form6 f6 = new Form6((int)dataGridView2.Rows[e.RowIndex].Cells["ID"].Value);
+                        f6.Show();
+                    }
+
                 }
             }
             else if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView2.Columns["dataGridViewEditButton"].Index)
