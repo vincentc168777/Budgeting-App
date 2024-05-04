@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Windows.Forms;
 
@@ -92,9 +93,11 @@ namespace WindowsFormsApp1
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView2.Columns["dataGridViewDeleteButton"].Index)
             {
-                if (dataGridView2.Rows.Count > e.RowIndex) { 
+                if (dataGridView2.Rows.Count > e.RowIndex) {
+
                     DialogResult result = MessageBox.Show("Are you sure you want to delete this?", "Warning", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
@@ -102,6 +105,7 @@ namespace WindowsFormsApp1
                         Program.mainDisplay.LoadData();
 
                     }
+
                 }
             }
             else if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView2.Columns["dataGridViewEditButton"].Index)

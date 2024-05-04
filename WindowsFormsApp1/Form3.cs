@@ -10,6 +10,8 @@ namespace WindowsFormsApp1
         public Form3()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Text = "Add Item";
         }
         //this button saves transaction info into database
