@@ -17,10 +17,10 @@ namespace WindowsFormsApp1
         //this button saves transaction info into database
         private void button1_Click(object sender, EventArgs e)
         {
-            float i = 0;
+            float i;
             bool isNum = float.TryParse(textBox2.Text, out i);
             Item item = new Item();
-            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && isNum)
+            if (!string.IsNullOrEmpty(textBox1.Text) && isNum && i >= 0)
             {
                 item.ItemName = textBox1.Text;
                 item.Cost = i;
