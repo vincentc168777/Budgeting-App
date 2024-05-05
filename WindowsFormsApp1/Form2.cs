@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
             //DBConnect.createBudgetTable();
             LoadData();
             textBox1.KeyUp += textBox1_KeyUp;
-
+            loadImages();
            
         }
 
@@ -196,6 +196,14 @@ namespace WindowsFormsApp1
                 f4.Show();
             }
 
+        }
+
+        private void loadImages()
+        {
+            string picPath = Path.Combine(Environment.CurrentDirectory, "pictures");
+            float bud = DBConnect.displayBudget();
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.Image = Image.FromFile(picPath + @"\money.png");
         }
 
         private void label3_Click(object sender, EventArgs e)
