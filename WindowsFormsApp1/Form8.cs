@@ -16,6 +16,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             this.Text = "Sign Up";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

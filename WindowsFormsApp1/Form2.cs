@@ -204,6 +204,8 @@ namespace WindowsFormsApp1
             float bud = DBConnect.displayBudget();
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.Image = Image.FromFile(picPath + @"\money.png");
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.Image = Image.FromFile(picPath + @"\money.png");
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -231,6 +233,9 @@ namespace WindowsFormsApp1
             
         }
 
+        private void label6_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

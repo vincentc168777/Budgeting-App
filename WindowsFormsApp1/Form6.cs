@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 
 namespace WindowsFormsApp1
 {
@@ -18,12 +21,22 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             this.Text = "Delete Item";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             id = i;
             label6.Text = DBConnect.getName(id);
             label7.Text = Convert.ToString(DBConnect.getCost(id));
             label8.Text = DBConnect.getDescription(id);
+            loadImages();
         }
-
+        private void loadImages()
+        {
+            string picPath = Path.Combine(Environment.CurrentDirectory, "pictures");
+            float bud = DBConnect.displayBudget();
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.Image = Image.FromFile(picPath + @"\trashcan.png");
+        }
+        
         private void Form6_Load(object sender, EventArgs e)
         {
         }

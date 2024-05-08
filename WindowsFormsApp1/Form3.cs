@@ -1,5 +1,7 @@
 ﻿using System;
-
+using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -13,6 +15,15 @@ namespace WindowsFormsApp1
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Text = "Add Item";
+            loadImages();
+        }
+
+        private void loadImages()
+        {
+            string picPath = Path.Combine(Environment.CurrentDirectory, "pictures");
+            float bud = DBConnect.displayBudget();
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.Image = Image.FromFile(picPath + @"\shoppingcart.png");
         }
         //this button saves transaction info into database
         private void button1_Click(object sender, EventArgs e)
@@ -70,17 +81,17 @@ namespace WindowsFormsApp1
 
                 
             }
-            else if (i <= 0 && isNum)
+            else if (i < 0 && isNum)
             {
-                MessageBox.Show("The price cannot be negative!", "Warning");
+                MessageBox.Show("The price cannot be negative! \nPlease try again.", "Warning");
             }
-            else if (!isNum)
+            else if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && !isNum)
             {
-                MessageBox.Show("Please try again, but only entering numbers.", "Warning");
+                MessageBox.Show("Only numbers can be entered into the price field. \nPlease try again.", "Warning");
             }
             else
             {
-                MessageBox.Show("Invalid or missing values.", "Warning");
+                MessageBox.Show("There are empty fields for either \nitem name or price. Please try again.", "Warning");
             }
 
 
