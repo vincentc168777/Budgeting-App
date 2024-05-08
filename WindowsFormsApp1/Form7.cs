@@ -24,8 +24,6 @@ namespace WindowsFormsApp1
             if (loginExists)
             {
                 MessageBox.Show("Login successful!", "Sucess");
-                Form2 f2 = new Form2();
-                f2.Show();
                 this.Close();
             }
             else

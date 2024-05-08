@@ -25,13 +25,22 @@ namespace WindowsFormsApp1
                 DBConnect.SaveLogin(textBox1.Text, textBox2.Text);
                 MessageBox.Show("Sign up successful!", "Success");
                 this.Close();
-                Form2 f2 = new Form2();
-                f2.Show();
             }
             else
             {
                 MessageBox.Show("Username already exists, please try another one.", "Error");
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form7 f7 = new Form7();
+            f7.Show();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -18,8 +18,7 @@ namespace WindowsFormsApp1
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
             mainDisplay = new Form2();
-            
-            
+            Application.Run(mainDisplay);   
         }
     }
 }
