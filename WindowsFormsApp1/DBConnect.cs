@@ -24,6 +24,54 @@ namespace WindowsFormsApp1
 
             }
         }
+        public static void createLoginTable()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("create table if not exists LoginInfo(" +
+                    "ID integer PRIMARY KEY," +
+                    "username TEXT," +
+                    "password TEXT)");
+
+            }
+        }
+
+        public static void clearDataLogin()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("DROP TABLE LoginInfo");
+
+            }
+        }
+
+        public static void SaveLogin(string user, string pass)
+        {
+            //clearDataLogin();
+            createLoginTable();
+            // using statemnt opens connection and no matter what happens, whether we finish running this or we crash, the connection to db will close
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                cnn.Execute("insert into LoginInfo (username, password) values (@username, @password)", new { username = user, password = pass });
+            }
+        }
+
+        public static bool FindLogin(string user, string pass)
+        {
+            createLoginTable();
+            // using statemnt opens connection and no matter what happens, whether we finish running this or we crash, the connection to db will close
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
+            {
+                var result = cnn.QueryFirstOrDefault<string>("SELECT  username " +
+                    "FROM  LoginInfo " +
+                    "WHERE  username = @username AND password = @password;", new { username = user, password = pass });
+                if (result == null)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
 
         public static void clearData()
         {
