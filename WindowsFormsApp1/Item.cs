@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace WindowsFormsApp1
 {
@@ -13,12 +9,8 @@ namespace WindowsFormsApp1
         public string ItemName { get; set; }
         public float Cost { get; set; }
 
-        public string PrintItem
-        {
-            get
-            {
-                return $"{ItemName} {Cost}";
-            }
-        }
+        public string Description { get; set; }
+
+
     }
 }
