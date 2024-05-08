@@ -25,7 +25,7 @@ namespace WindowsFormsApp1
             bool loginExists = DBConnect.FindLogin(textBox1.Text, textBox2.Text);
             if (loginExists)
             {
-                MessageBox.Show("Login successful!", "Sucess");
+                MessageBox.Show("Login successful!", "Success");
                 this.Close();
                 Program.HomePage.Close();
             }
