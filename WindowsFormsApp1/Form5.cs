@@ -39,6 +39,14 @@ namespace WindowsFormsApp1
                 Program.mainDisplay.LoadData();
                 this.Close();
             }
+            else if (i < 0 && isNum)
+            {
+                MessageBox.Show("The price cannot be negative!", "Warning");
+            }
+            else if (!isNum)
+            {
+                MessageBox.Show("Please try again, but only entering numbers.", "Warning");
+            }
             else
             {
                 MessageBox.Show("Invalid or missing values.", "Warning");

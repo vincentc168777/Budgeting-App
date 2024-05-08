@@ -70,6 +70,14 @@ namespace WindowsFormsApp1
 
                 
             }
+            else if (i <= 0 && isNum)
+            {
+                MessageBox.Show("The price cannot be negative!", "Warning");
+            }
+            else if (!isNum)
+            {
+                MessageBox.Show("Please try again, but only entering numbers.", "Warning");
+            }
             else
             {
                 MessageBox.Show("Invalid or missing values.", "Warning");
