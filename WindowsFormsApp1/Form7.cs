@@ -25,6 +25,7 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Login successful!", "Sucess");
                 this.Close();
+                Program.HomePage.Close();
             }
             else
             {
