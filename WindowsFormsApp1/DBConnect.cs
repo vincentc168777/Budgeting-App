@@ -205,8 +205,9 @@ namespace WindowsFormsApp1
         {
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnString()))
                 {
-                    return cnn.QueryFirstOrDefault<float>("SELECT budgetPrice FROM Budget LIMIT 1", 0f);
-                }
+                    float budget = cnn.QueryFirstOrDefault<float>("SELECT budgetPrice FROM Budget LIMIT 1", 0f);
+                    return (float)Math.Round(budget, 2);
+            }
         }
 
         //supposed to save budget into Budget table
@@ -240,7 +241,8 @@ namespace WindowsFormsApp1
                     total += i.Cost;
                 }
             }
-            return total;
+            //return total;
+            return (float)Math.Round(total, 2);
         }
 
         private static string LoadConnString(string id = "Default")
