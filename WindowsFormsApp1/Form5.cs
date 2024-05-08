@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
             float i = 0;
             bool isNum = float.TryParse(textBox2.Text, out i);
             Item item = new Item();
-            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && isNum)
+            if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && isNum && i >= 0)
             {
                 item.ItemName = textBox1.Text;
                 item.Cost = i;
@@ -38,6 +38,10 @@ namespace WindowsFormsApp1
                 DBConnect.EditItem(id, item.ItemName, (decimal)item.Cost, item.Description);
                 Program.mainDisplay.LoadData();
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Invalid or missing values.", "Warning");
             }
             if (DBConnect.displayBudget() < (DBConnect.displayTotal()))
             {
