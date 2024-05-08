@@ -58,5 +58,11 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form8 form = new Form8();
+            form.Show();
+        }
     }
 }
