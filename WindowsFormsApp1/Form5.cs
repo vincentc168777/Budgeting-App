@@ -35,7 +35,7 @@ namespace WindowsFormsApp1
             if (!string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && isNum && i >= 0)
             {
                 item.ItemName = textBox1.Text;
-                item.Cost = i;
+                item.Cost = (float)Math.Round(i, 2);
                 item.Description = textBox3.Text;
                 DBConnect.EditItem(id, item.ItemName, (decimal)item.Cost, item.Description);
                 Program.mainDisplay.LoadData();

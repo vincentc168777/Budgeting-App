@@ -17,6 +17,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             this.Text = ("EZBudgeter");
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
         }
         
         private void label1_Click(object sender, EventArgs e)
